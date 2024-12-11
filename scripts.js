@@ -24,10 +24,17 @@ function onCountClick(){
     firstNumber = parseInt (splitted[0]);
     action = splitted [1];
     secondNumber = parseInt(splitted[2]);
+    console.log('splited', splitted[2])
+if ( action === undefined || splitted[2] === '' ){
+    calculationSpan.innerText = firstNumber;
+    return;
+}
     calculateAnswer();
     console.log ('atsakymas', answer)
+
     input.value = answer
     calculationSpan.innerText = `${firstNumber} ${action} ${secondNumber}`
+    
     addHistory();
 console.log('history', history)
 }
@@ -44,14 +51,6 @@ function calculateAnswer(){
     }
 }
 
-// function onCleanClick() {
-//     firstNumber = 0;           
-//     secondNumber = 0;          
-//     action = '+';              
-//     answer = 0;                
-//     input.value = '';          
-//     calculationSpan.innerText = ''; 
-// }
 
 function onCleanClick() {
      firstNumber = 0;
