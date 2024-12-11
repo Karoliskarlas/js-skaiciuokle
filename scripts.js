@@ -1,4 +1,6 @@
-let firstNuber = 0;
+"use strict"
+
+let firstNumber = 0;
 let secondNumber = 0;
 let action = '+';
 let answer = 0;
@@ -16,17 +18,23 @@ function onActionClick(clickedAction){
 
 function onCountClick(){
     let splitted = input.value.split(' ');
-    FirstNumber = parseInt (splitted[0]);
+    firstNumber = parseInt (splitted[0]);
     action = splitted [1];
     secondNumber = parseInt(splitted[2]);
+    calculateAnswer();
+    console.log ('atsakymas', answer)
+    input.value = answer
 }
+
+
 
 function calculateAnswer(){
     switch (action){
-        case '+': answer = firstNuber + secondNumber; break;
-        case '-': answer = firstNuber + secondNumber; break;
-        case 'x': answer = firstNuber + secondNumber; break;
-        case '/': answer = firstNuber + secondNumber; break;
+        case '+': answer = firstNumber + secondNumber; break;
+        case '-': answer = firstNumber + secondNumber; break;
+        case 'x': answer = firstNumber + secondNumber; break;
+        case '/': answer = firstNumber + secondNumber; break;
 
     }
 }
+
