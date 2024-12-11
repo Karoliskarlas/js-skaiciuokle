@@ -20,6 +20,7 @@ function onNumberClick(number) {
 
 function onActionClick(clickedAction) {
     input.value += ' ' + clickedAction + ' ';
+   
     action = clickedAction;
 }
 
