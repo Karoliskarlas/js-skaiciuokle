@@ -1,4 +1,4 @@
-"use strict"
+// "use strict"
 
 let firstNumber = 0;
 let secondNumber = 0;
@@ -27,7 +27,9 @@ function onCountClick(){
     calculateAnswer();
     console.log ('atsakymas', answer)
     input.value = answer
-    calculationSpan.innerText = `${firstNumber} ${action} ${secondNumber}`;
+    calculationSpan.innerText = `${firstNumber} ${action} ${secondNumber}`
+    addHistory();
+console.log('history', history)
 }
 
 
@@ -42,11 +44,35 @@ function calculateAnswer(){
     }
 }
 
-function onCleanClick(){
+// function onCleanClick() {
+//     firstNumber = 0;           
+//     secondNumber = 0;          
+//     action = '+';              
+//     answer = 0;                
+//     input.value = '';          
+//     calculationSpan.innerText = ''; 
+// }
+
+function onCleanClick() {
      firstNumber = 0;
      secondNumber = 0;
      action = '+';
      answer = 0;
-    input.value = ' '
+    input.value = ''
     calculationSpan.innerText = ''
+}
+function addHistory(){
+    let historyItem = {
+        firstNumber,
+        action,
+        secondNumber,
+        answer
+    };
+    history.push(historyItem) 
+}
+
+document.getElementById('show-history').onclick = function(){
+    let formatted = history.map(x =>`<p>${x.firstNumber} ${x.action} ${x.secondNumber} = ${x.answer}</p>`);
+    let historyBlock = document.querySelector('.calculator .history-items');
+    historyBlock.innerHTML = formatted.join('')
 }
