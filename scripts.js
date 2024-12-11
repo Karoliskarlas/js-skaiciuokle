@@ -8,41 +8,45 @@ let answer = 0;
 let input = document.getElementById('calc-input');
 let calculationSpan = document.getElementById('calculation')
 
-let history  = [];
+let history = [];
 
-function onNumberClick(number){
+function onNumberClick(number) {
+    if (input.value === '0') {
+        input.value = ''
+    }
     input.value += number;
+  
 }
 
-function onActionClick(clickedAction){
+function onActionClick(clickedAction) {
     input.value += ' ' + clickedAction + ' ';
     action = clickedAction;
 }
 
-function onCountClick(){
+function onCountClick() {
     let splitted = input.value.split(' ');
-    firstNumber = parseInt (splitted[0]);
-    action = splitted [1];
+    firstNumber = parseInt(splitted[0]);
+    action = splitted[1];
     secondNumber = parseInt(splitted[2]);
     console.log('splited', splitted[2])
-if ( action === undefined || splitted[2] === '' ){
-    calculationSpan.innerText = firstNumber;
-    return;
-}
+    if (action === undefined || splitted[2] === '') {
+        calculationSpan.innerText = firstNumber;
+        return;
+    }
     calculateAnswer();
-    console.log ('atsakymas', answer)
+    console.log('atsakymas', answer)
 
     input.value = answer
     calculationSpan.innerText = `${firstNumber} ${action} ${secondNumber}`
-    
+
     addHistory();
-console.log('history', history)
+    console.log('history', history)
 }
 
 
 
-function calculateAnswer(){
-    switch (action){
+function calculateAnswer() {
+    switch (action) {
         case '+': answer = firstNumber + secondNumber; break;
         case '-': answer = firstNumber - secondNumber; break;
         case 'x': answer = firstNumber * secondNumber; break;
@@ -53,25 +57,25 @@ function calculateAnswer(){
 
 
 function onCleanClick() {
-     firstNumber = 0;
-     secondNumber = 0;
-     action = '+';
-     answer = 0;
+    firstNumber = 0;
+    secondNumber = 0;
+    action = '+';
+    answer = 0;
     input.value = ''
     calculationSpan.innerText = ''
 }
-function addHistory(){
+function addHistory() {
     let historyItem = {
         firstNumber,
         action,
         secondNumber,
         answer
     };
-    history.push(historyItem) 
+    history.push(historyItem)
 }
 
-document.getElementById('show-history').onclick = function(){
-    let formatted = history.map(x =>`<p>${x.firstNumber} ${x.action} ${x.secondNumber} = ${x.answer}</p>`);
+document.getElementById('show-history').onclick = function () {
+    let formatted = history.map(x => `<p>${x.firstNumber} ${x.action} ${x.secondNumber} = ${x.answer}</p>`);
     let historyBlock = document.querySelector('.calculator .history-items');
     historyBlock.innerHTML = formatted.join('')
 }
