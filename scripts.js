@@ -8,6 +8,8 @@ let answer = 0;
 let input = document.getElementById('calc-input');
 let calculationSpan = document.getElementById('calculation')
 
+let history  = [];
+
 function onNumberClick(number){
     input.value += number;
 }
