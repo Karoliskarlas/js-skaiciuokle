@@ -6,6 +6,7 @@ let action = '+';
 let answer = 0;
 
 let input = document.getElementById('calc-input');
+let calculationSpan = document.getElementById('calculation')
 
 function onNumberClick(number){
     input.value += number;
@@ -24,6 +25,7 @@ function onCountClick(){
     calculateAnswer();
     console.log ('atsakymas', answer)
     input.value = answer
+    calculationSpan.innerText = `${firstNumber} ${action} ${secondNumber}`;
 }
 
 
@@ -31,10 +33,18 @@ function onCountClick(){
 function calculateAnswer(){
     switch (action){
         case '+': answer = firstNumber + secondNumber; break;
-        case '-': answer = firstNumber + secondNumber; break;
-        case 'x': answer = firstNumber + secondNumber; break;
-        case '/': answer = firstNumber + secondNumber; break;
+        case '-': answer = firstNumber - secondNumber; break;
+        case 'x': answer = firstNumber * secondNumber; break;
+        case '/': answer = firstNumber / secondNumber; break;
 
     }
 }
 
+function onCleanClick(){
+     firstNumber = 0;
+     secondNumber = 0;
+     action = '+';
+     answer = 0;
+    input.value = ' '
+    calculationSpan.innerText = ''
+}
